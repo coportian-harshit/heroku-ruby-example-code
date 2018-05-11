@@ -5,9 +5,11 @@
 version: 2
 jobs:
   build:
-    docker:
+    machine:
+      ruby:
+        version: 2.3.3p222
       # specify the version you desire here
-       - image: circleci/ruby:2.3.5
+      # image: circleci/ruby:2.3.5
 
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
