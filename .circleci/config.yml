@@ -2,6 +2,8 @@
 #
 # Check https://circleci.com/docs/2.0/language-ruby/ for more details
 #
+#git@github.com:coportian-harshit/heroku-ruby-example-code.git
+
 version: 2
 jobs:
   build:
