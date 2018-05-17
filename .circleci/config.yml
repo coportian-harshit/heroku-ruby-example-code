@@ -63,7 +63,7 @@ workflows:
           filters:
             tags:
               only: /staging/
-      - production_test:
+      - functional_test:
           requires:
             - build
           filters:
