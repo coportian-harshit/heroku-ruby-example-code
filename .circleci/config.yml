@@ -45,7 +45,30 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - test
+      - test:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /.*/
+      - unit_test:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /staging/
+      - integration_test:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /staging/
+      - production_test:
+          requires:
+            - build
+          filters:
+            tags:
+              only: /staging/
 
 # version: 2
 # jobs:
