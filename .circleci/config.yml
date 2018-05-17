@@ -3,36 +3,34 @@
 # Check https://circleci.com/docs/2.0/language-ruby/ for more details
 #
 #git@github.com:coportian-harshit/heroku-ruby-example-code.git
-
 version: 2
 jobs:
   build:
     docker:
       - image: circleci/ruby:2.4.1
-    steps:
-      - checkout
-      - run: echo "A first hello"
-  test:
-    docker:
       - image: circleci/mongo:3.6
     steps:
       - checkout
-      - run: echo "A first hello"
+      - run: echo "Running the build"
+      - run:
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
   unit_test:
     docker:
-      - image: circleci/mongo:3.6
+      - image: circleci/ruby:2.4.1
     steps:
       - checkout
       - run: echo "UNIT TEST"
   integration_test:
     docker:
-      - image: circleci/mongo:3.6
+      - image: circleci/ruby:2.4.1
     steps:
       - checkout
       - run: echo "INTEGRATION TEST"
   functional_test:
     docker:
-      - image: circleci/mongo:3.6
+      - image: circleci/ruby:2.4.1
     steps:
       - checkout
       - run: echo "FUNCTIONAL TEST"
@@ -45,30 +43,94 @@ workflows:
           filters:
             tags:
               only: /.*/
-      - test:
-          requires:
-            - build
-          filters:
-            tags:
-              only: /.*/
       - unit_test:
           requires:
             - build
           filters:
             tags:
-              only: /staging/
+              only: /.*/
       - integration_test:
           requires:
             - build
           filters:
             tags:
-              only: /staging/
+              only:
+                - staging
+                - production
       - functional_test:
           requires:
             - build
           filters:
             tags:
-              only: /staging/
+              only:
+                - staging
+                - prodction
+
+# version: 2
+# jobs:
+#   build:
+#     docker:
+#       - image: circleci/ruby:2.4.1
+#     steps:
+#       - checkout
+#       - run: echo "A first hello"
+#   test:
+#     docker:
+#       - image: circleci/mongo:3.6
+#     steps:
+#       - checkout
+#       - run: echo "A first hello"
+#   unit_test:
+#     docker:
+#       - image: circleci/mongo:3.6
+#     steps:
+#       - checkout
+#       - run: echo "UNIT TEST"
+#   integration_test:
+#     docker:
+#       - image: circleci/mongo:3.6
+#     steps:
+#       - checkout
+#       - run: echo "INTEGRATION TEST"
+#   functional_test:
+#     docker:
+#       - image: circleci/mongo:3.6
+#     steps:
+#       - checkout
+#       - run: echo "FUNCTIONAL TEST"
+#
+# workflows:
+#   version: 2
+#   build_and_test:
+#     jobs:
+#       - build:
+#           filters:
+#             tags:
+#               only: /.*/
+#       - test:
+#           requires:
+#             - build
+#           filters:
+#             tags:
+#               only: /.*/
+#       - unit_test:
+#           requires:
+#             - build
+#           filters:
+#             tags:
+#               only: /staging/
+#       - integration_test:
+#           requires:
+#             - build
+#           filters:
+#             tags:
+#               only: /staging/
+#       - functional_test:
+#           requires:
+#             - build
+#           filters:
+#             tags:
+#               only: /staging/
 
 # version: 2
 # jobs:
