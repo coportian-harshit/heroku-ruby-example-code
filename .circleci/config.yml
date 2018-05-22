@@ -34,6 +34,11 @@ jobs:
     steps:
       - checkout
       - run: echo "FUNCTIONAL TEST"
+  hold:
+    docker:
+      - image: circleci/ruby:2.4.1
+    steps:
+      - run: echo "On hold"
   deploy:
     docker:
       - image: circleci/ruby:2.4.1
@@ -70,12 +75,15 @@ workflows:
               only:
                 - staging
                 - prodction
-      - deploy:
+      - hold:
+          type: approval
           requires:
             - functional_test
             - integration_test
             - unit_test
-            # - hold
+      - deploy:
+          requires:
+            - hold
 # version: 2
 # jobs:
 #   build:
