@@ -35,6 +35,8 @@ jobs:
       - checkout
       - run: echo "FUNCTIONAL TEST"
   deploy:
+    docker:
+      - image: circleci/ruby:2.4.1
     steps:
       - run: echo "deploy"
 
