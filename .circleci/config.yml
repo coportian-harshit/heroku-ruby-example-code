@@ -34,6 +34,9 @@ jobs:
     steps:
       - checkout
       - run: echo "FUNCTIONAL TEST"
+  deploy:
+    steps:
+      - run: echo "deploy"
 
 workflows:
   version: 2
@@ -65,7 +68,12 @@ workflows:
               only:
                 - staging
                 - prodction
-
+      - deploy:
+          requires:
+            - functional_test
+            - integration_test
+            - unit_test
+            - hold
 # version: 2
 # jobs:
 #   build:
