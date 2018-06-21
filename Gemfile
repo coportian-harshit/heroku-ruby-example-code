@@ -3,13 +3,13 @@
 source 'https://rubygems.org'
 ruby '>= 2.2', '< 2.6'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+# Bundle edge Rails instead: gem 'rails', '>= 5.1.4', github: 'rails/rails'
 gem 'rails'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 gem 'rails_12factor', group: :production
 # Use SCSS for stylesheets
-gem 'sass-rails'
+gem 'sass-rails', '>= 5.0.7'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
 # Use CoffeeScript for .js.coffee assets and views
