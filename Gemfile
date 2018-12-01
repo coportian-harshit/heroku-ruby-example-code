@@ -3,7 +3,7 @@
 source 'https://rubygems.org'
 ruby '>= 2.2', '< 2.6'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+# Bundle edge Rails instead: gem 'rails', '>= 5.1.6.1', github: 'rails/rails'
 gem 'rails'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
